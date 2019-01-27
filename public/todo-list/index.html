@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="./css/style.css">
+    
+  </head>
+  <body>
+    <main class="m-3">
+      <!-- ToDo List -->
+      
+      <div class="box box-primary">
+        <div class="box-header">
+          <i class="ion ion-clipboard"></i>
+
+          <h3 class="box-title">To Do List</h3>
+
+          
+        <!-- /.box-header -->
+        <div class="box-body">
+          <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+          <ul class="todo-list">
+            
+            <li v-for="(item, index) in tasks" :class="{done: item.completed}">
+                  
+              <input type="checkbox" value="" v-model="item.completed">
+              <span class="text" v-if="index !== taskEdited">{{item.name}}</span>
+              <input type="text" v-model="item.name" @focusout="taskEdited = ''" v-else>
+              <small class="label" 
+                :class="classTaskPriority(item)">
+                <i class="fa fa-clock-o"></i>
+                 {{ item.duration }}</small>
+              <div class="tools">
+                <i class="fa fa-edit" @click="editTask(index)"></i>
+                <i class="fa fa-trash-o" @click="removeTask(index)"></i>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix no-border">
+          <input type="text" placeholder="Add a task.." 
+              v-model="newTaskName">
+          <input type="text" placeholder="Add a duration.." 
+              v-model="newTaskDuration">
+          <input type="number" placeholder="priority" 
+          min="1" max="6" v-model="newTaskPriority">
+          <button type="button" 
+            class="btn btn-default pull-right"
+            @click="addNewTask">
+            <i class="fa fa-plus"></i>
+             Add item
+          </button>
+        </div>
+      </div>
+      
+      <pre>{{ $data }}</pre>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
